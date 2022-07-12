@@ -9,7 +9,7 @@
    </div>
     <div class="col-lg-12 mb-4">
             {%for list in movies_types_of_lists %}
-                <a href="{{ url_for('homepage', list_type=movies_types_of_lists[list]) }}" class="btn btn-info" aria-pressed="false" >{{list}}</a>
+                <a href="{{ url_for('homepage', list_type=movies_types_of_lists[list]) }}" class="btn btn-outline-info" aria-pressed="false" >{{list}}</a>
             {%endfor%}
 
     </div>

@@ -12,7 +12,7 @@ def not_found(error):
 
 @app.route('/')
 def homepage():
-    movies_types_of_lists = {"Popular": "popular", "Top Rated ": "top_rated", "Upcoming": "upcoming", "Latest": "latest"}
+    movies_types_of_lists = {"Popular": "popular", "Top Rated ": "top_rated", "Upcoming": "upcoming"}
     selected_list = request.args.get('list_type', 'popular')
     movies = get_movies(list_type=selected_list)
     if selected_list not in movies_types_of_lists.values():
