@@ -15,7 +15,7 @@ def homepage():
     movies_types_of_lists = {"Popular": "popular", "Top Rated ": "top_rated", "Upcoming": "upcoming", "Latest": "latest"}
     selected_list = request.args.get('list_type', 'popular')
     movies = get_movies(list_type=selected_list)
-    if not selected_list:
+    if selected_list not in movies_types_of_lists.values():
         return render_template("homepage.html", movies=movies, current_list='popular', movies_types_of_lists= movies_types_of_lists)
     return render_template("homepage.html", movies=movies, current_list=selected_list, movies_types_of_lists= movies_types_of_lists)
 
