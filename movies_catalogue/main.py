@@ -1,25 +1,25 @@
-from flask import Flask, render_template, request, redirect
+from flask import Flask, render_template, request, make_response, jsonify, redirect, url_for
 import requests
 from tmdb_client import get_poster, get_movies, get_single_movie,get_single_movie_cast
 
 app = Flask(__name__)
-
+movies_types_of_lists = {
+        "Popular": "popular", "Top Rated ": "top_rated", "Upcoming": "upcoming", "Now playing": "now_playing"
+    }
 
 @app.errorhandler(404)
 def not_found(error):
-    return redirect("/")
+    return make_response(jsonify({'error': 'Not found', 'status_code': 404}), 404)
 
 
 @app.route('/')
 def homepage():
-    movies_types_of_lists = {"Popular": "popular", "Top Rated ": "top_rated", "Upcoming": "upcoming"}
     selected_list = request.args.get('list_type', 'popular')
-    movies = get_movies(list_type=selected_list)
+    print(selected_list)
     if selected_list not in movies_types_of_lists.values():
-        return render_template("homepage.html", movies=movies, current_list='popular', movies_types_of_lists= movies_types_of_lists)
+        return redirect("/")
+    movies = get_movies(list_type=selected_list)
     return render_template("homepage.html", movies=movies, current_list=selected_list, movies_types_of_lists= movies_types_of_lists)
-
-
 
 
 @app.route('/movie/<movie_id>')
@@ -41,3 +41,4 @@ def utility_procesor():
 
 if __name__ == '__main__':
     app.run(debug=True)
+

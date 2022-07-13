@@ -58,9 +58,3 @@ def get_single_movie_cast(movie_id):
 
 
 
-movie = get_single_movie(13)
-cast = get_single_movie_cast(13)
-print(get_top_movies('popular'))
-print(cast)
-print(movie["budget"])
-print(get_poster('36qWnokCU1VOdSyrmGbTxzGou44.jpg', 'w185'))

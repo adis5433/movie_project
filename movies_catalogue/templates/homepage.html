@@ -7,9 +7,12 @@
        <h1 class="mt-5">Witaj w mojej bibliotece filmów</h1>
        <p class="lead">Znajdziesz tutaj tylko najlepsze tytuły!</p>
    </div>
-    <div class="col-lg-12 mb-4">
+    <div class="col-lg-12 mb-4 btn-group btn-group-toggle" data-toggle="buttons">
             {%for list in movies_types_of_lists %}
-                <a href="{{ url_for('homepage', list_type=movies_types_of_lists[list]) }}" class="btn btn-outline-info" aria-pressed="false" >{{list}}</a>
+                {%if current_list == list%}
+                    <a href="{{ url_for('homepage', list_type=movies_types_of_lists[list]) }}" class="btn btn-info" >{{selected_list}}</a>
+                {%endif%}
+            <a href="{{ url_for('homepage', list_type=movies_types_of_lists[list]) }}" class="btn btn-outline-info " aria-pressed="true" >{{list}}</a>
             {%endfor%}
 
     </div>
