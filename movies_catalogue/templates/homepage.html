@@ -7,14 +7,13 @@
        <h1 class="mt-5">Witaj w mojej bibliotece filmów</h1>
        <p class="lead">Znajdziesz tutaj tylko najlepsze tytuły!</p>
    </div>
+
     <div class="col-lg-12 mb-4 btn-group btn-group-toggle" data-toggle="buttons">
             {%for list in movies_types_of_lists %}
-                {%if current_list == list%}
-                    <a href="{{ url_for('homepage', list_type=movies_types_of_lists[list]) }}" class="btn btn-info" >{{selected_list}}</a>
-                {%endif%}
-            <a href="{{ url_for('homepage', list_type=movies_types_of_lists[list]) }}" class="btn btn-outline-info " aria-pressed="true" >{{list}}</a>
+                <a href="{{ url_for('homepage', list_type=movies_types_of_lists[list]) }}" class="btn btn-outline-info {{'active' if current_list == movies_types_of_lists[list]}} " aria-pressed="true" >{{list}}</a>
             {%endfor%}
-
+            <a href="{{ url_for('tv_series') }}" class="btn btn-outline-info " aria-pressed="true" >Tv Series</a>
+            <a href="{{ url_for('show_favorites') }}" class="btn btn-outline-info " aria-pressed="true" >Favorites</a>
     </div>
     {%for movie in movies %}
    <div class="col-lg-3 col-md-6 mb-4">
@@ -26,6 +25,15 @@
            </div>
            <div class="card-footer text-center">
                <a href="{{ url_for('movie_details', movie_id=movie.id) }}" class = "btn btn-primary">Pokaż więcej</a>
+               <form method="POST" action={{url_for('add_to_favorites')}} name = "movie_id" value={{movie.id}}>
+               <input type="hidden" name="movie_title" value="{{ movie.title }}">
+                <input type="hidden" name="movie_id" value="{{ movie.id }}">
+                <button type="submit" class="btn btn-default">
+               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star" viewBox="0 0 16 16" >
+                <path d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.565.565 0 0 0-.163-.505L1.71 6.745l4.052-.576a.525.525 0 0 0 .393-.288L8 2.223l1.847 3.658a.525.525 0 0 0 .393.288l4.052.575-2.906 2.77a.565.565 0 0 0-.163.506l.694 3.957-3.686-1.894a.503.503 0 0 0-.461 0z"/>
+                </svg>
+                </button>
+               </form>
            </div>
        </div>
    </div>
