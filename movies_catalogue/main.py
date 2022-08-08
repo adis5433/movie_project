@@ -12,9 +12,9 @@ print(FAVORITES)
 app.secret_key = b'flask_secret_key'
 
 
-@app.errorhandler(404)
+"""@app.errorhandler(404)
 def not_found(error):
-    return make_response(jsonify({'error': 'Not found', 'status_code': 404}), 404)
+    return make_response(jsonify({'error': 'Not found', 'status_code': 404}), 404)"""
 
 
 @app.route('/')
@@ -64,8 +64,6 @@ def add_to_favorites():
 def tv_series():
     today = datetime.date.today()
     tv_series = get_tv_series()
-    print(url_for('tv_series'))
-    print(url_for(request.endpoint))
     return render_template("tv_series.html", tv_series=tv_series, movies_types_of_lists=movies_types_of_lists, today=today,
                            current_list=url_for(request.endpoint))
 
