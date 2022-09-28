@@ -4,7 +4,6 @@ import random
 import requests
 from pprint import pprint
 import os
-api_token = "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI5OWRkMzBhZjE3NDY4NmQzNzRmMjcxMDRmMjMxOWI0YyIsInN1YiI6IjYyYzU5NzdkYjZjMjY0MDA1MTNlZjAzYSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.ys0Yi7yxgecxolhYTZQzw_feMFrLoSqTx7F329WMSYU"
 
 def get_api_from_tmdb(endpoint):
     url_adres = f"https://api.themoviedb.org/3/{endpoint}"
